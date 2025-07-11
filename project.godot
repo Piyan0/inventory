@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="inventory"
-run/main_scene="uid://cq8vvau0ytbqe"
+run/main_scene="uid://b8v0yk7xp3b41"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
@@ -24,7 +24,7 @@ Output="*res://debug/canvas_layer.tscn"
 
 window/size/viewport_width=280
 window/size/viewport_height=210
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [input]

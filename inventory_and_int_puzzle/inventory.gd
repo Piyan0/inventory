@@ -2,7 +2,7 @@ extends CanvasLayer
 
 var cursor_at_id= 0
 var can_place= true
-
+var items_reference_for_delete =[]
 #0. id, 1.name_ind, 2.name_en
 var item_data= [
   [1, 'Kapak', 'Axe'],
@@ -74,14 +74,15 @@ func play_ready_anim(hide= false, wait_time= 0.0):
 
   
 func _ready() -> void:
+  open_inventory()
+    
+func open_inventory():
   await play_ready_anim(false, 0.2)
   await get_tree().create_timer(0.4).timeout
   set_up_item.call_deferred()
   pointer.position= items[0].global_position
   for i in item_slot:
     item_place[i][1].show()
-    
-
 func check():
   
   var correct_label= $HBoxContainer/NinePatchRect2/VBoxContainer2/Label
@@ -135,7 +136,12 @@ func show_info(warning=$HBoxContainer/NinePatchRect2/VBoxContainer2/NinePatch):
   separator.hide()
   warning.show()
 
+func free_all_item():
+  for i in items_reference_for_delete:
+    i.queue_free()
+    
 func set_up_item():
+  items_reference_for_delete= []
   last_dropped_items_id= []
   items_did_valid= false
   last_dropped_items_id= []
@@ -150,6 +156,7 @@ func set_up_item():
     var texture= load ( texture_path.call(item_name) )
     var ins= item_node.instantiate()
     ins.set_up([texture, item_name, items[i].global_position ] )
+    items_reference_for_delete.push_back(ins)
     add_item(ins, item[0])
     add_child(ins)
 
@@ -240,10 +247,15 @@ func set_hint_key_text(id, new_txt):
 
 func _input(event: InputEvent) -> void:
   
+  if event.is_action_pressed("square") and item_placed == 0:
+    await play_ready_anim(true, 0.2)
+    free_all_item()
+    return 
     
   if event.is_action_pressed('square') and items_did_valid:
     set_hint_key_text(KEY_ESCAPE, 'Back')
     await play_ready_anim(true, 0.2)
+    free_all_item()
     items_did_valid= false
     var correct_label= $HBoxContainer/NinePatchRect2/VBoxContainer2/Label
     for i in items_in_queue:
