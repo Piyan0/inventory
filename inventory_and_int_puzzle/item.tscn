@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp8mk0rn3co6y"]
+
+[ext_resource type="Texture2D" uid="uid://dc1s8ghhu277e" path="res://inventory_and_int_puzzle/texture/item/Kapak.png" id="1_ijq0q"]
+[ext_resource type="FontFile" uid="uid://b5845d74ljf3p" path="res://inventory_and_int_puzzle/font/pf_tempesta_seven.ttf" id="2_3c8lv"]
+[ext_resource type="Script" uid="uid://h2ih31amnp6" path="res://inventory_and_int_puzzle/item.gd" id="2_orj2c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_orj2c"]
+font = ExtResource("2_3c8lv")
+font_size = 4
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="item" type="TextureRect"]
+offset_right = 25.0
+offset_bottom = 24.0
+texture = ExtResource("1_ijq0q")
+script = ExtResource("2_orj2c")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = 8.0
+offset_right = 7.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Papan"
+label_settings = SubResource("LabelSettings_orj2c")

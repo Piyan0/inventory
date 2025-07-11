@@ -1,0 +1,634 @@
+[gd_scene load_steps=26 format=3 uid="uid://cq8vvau0ytbqe"]
+
+[ext_resource type="Script" uid="uid://dek2ow4qambfv" path="res://inventory_and_int_puzzle/inventory.gd" id="1_6xcu6"]
+[ext_resource type="PackedScene" uid="uid://cp8mk0rn3co6y" path="res://inventory_and_int_puzzle/item.tscn" id="2_m15k1"]
+[ext_resource type="Texture2D" uid="uid://1hp55p7s8frj" path="res://inventory_and_int_puzzle/texture/rect.png" id="3_g7wnv"]
+[ext_resource type="Texture2D" uid="uid://colx78coq3iap" path="res://inventory_and_int_puzzle/texture/item_box.png" id="4_ghb6n"]
+[ext_resource type="FontFile" uid="uid://q2fhh8urj10q" path="res://inventory_and_int_puzzle/font/superstarorig_memesbruh03.ttf" id="5_cvnr3"]
+[ext_resource type="Texture2D" uid="uid://kojd4h1hy8ue" path="res://inventory_and_int_puzzle/texture/rect_2.png" id="6_sffhc"]
+[ext_resource type="Texture2D" uid="uid://bhuwhsr530ghw" path="res://inventory_and_int_puzzle/texture/icon_wrong.png" id="7_74cnp"]
+[ext_resource type="FontFile" uid="uid://c1rqv5cvsoxf0" path="res://inventory_and_int_puzzle/font/pf_tempesta_seven_bold.ttf" id="8_letyl"]
+[ext_resource type="Texture2D" uid="uid://km6b1s8rwfar" path="res://inventory_and_int_puzzle/texture/pointer.png" id="9_r7y0s"]
+[ext_resource type="Texture2D" uid="uid://cmhiql0m1ibtm" path="res://inventory_and_int_puzzle/texture/icon_c.png" id="10_uyb26"]
+[ext_resource type="Texture2D" uid="uid://pk1dftme3hj2" path="res://inventory_and_int_puzzle/texture/icon_enter.png" id="11_exlkp"]
+[ext_resource type="Texture2D" uid="uid://c5gyxeoepy4y0" path="res://inventory_and_int_puzzle/texture/icon_esc.png" id="12_s3bl2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_owhak"]
+font = ExtResource("5_cvnr3")
+font_color = Color(0.494118, 0.533333, 0.564706, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pc3b"]
+line_spacing = 0.0
+font = ExtResource("8_letyl")
+font_size = 4
+font_color = Color(0.8, 0.0666667, 0.176471, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eyxmm"]
+line_spacing = 0.0
+font = ExtResource("8_letyl")
+font_size = 4
+font_color = Color(0.516019, 0.815556, 3.85046e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qwkph"]
+font = ExtResource("8_letyl")
+font_size = 6
+font_color = Color(0.494118, 0.533333, 0.564706, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wdb05"]
+line_spacing = 0.0
+font = ExtResource("8_letyl")
+font_size = 4
+font_color = Color(0.905882, 0.576471, 0.305882, 1)
+
+[sub_resource type="Animation" id="Animation_qwkph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_owhak"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdb05"]
+_data = {
+&"RESET": SubResource("Animation_qwkph"),
+&"idle": SubResource("Animation_owhak")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_fjrce"]
+line_spacing = 0.0
+font = ExtResource("8_letyl")
+font_size = 4
+outline_size = 4
+outline_color = Color(0.231373, 0.203922, 0.337255, 1)
+
+[sub_resource type="Animation" id="Animation_4wged"]
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ignore/Control:offset_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [155.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ignore/Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vsusa"]
+resource_name = "hide"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ignore/Control:offset_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [155.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ignore/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fjrce"]
+resource_name = "show"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.360522),
+"transitions": PackedFloat32Array(1, 3.73213),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.340522),
+"transitions": PackedFloat32Array(1, 3.73213),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ignore/Control:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ignore/Control:offset_bottom")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-180.0, 0.0, -180.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vsusa"]
+_data = {
+&"RESET": SubResource("Animation_4wged"),
+&"hide": SubResource("Animation_vsusa"),
+&"show": SubResource("Animation_fjrce")
+}
+
+[node name="inventory" type="CanvasLayer" node_paths=PackedStringArray("pointer")]
+script = ExtResource("1_6xcu6")
+item_slot = 4
+items_id = [1, 2, 3, 4, 5, 6]
+expected_items = [1, 2, 3, 5]
+pointer = NodePath("TextureRect")
+item_directory = "res://inventory_and_int_puzzle/texture/item"
+item_node = ExtResource("2_m15k1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -58.0
+offset_right = 99.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(70, 116)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("3_g7wnv")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="HBoxContainer/NinePatchRect"]
+custom_minimum_size = Vector2(54, 83)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -94.0
+offset_right = 27.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/NinePatchRect/FlowContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TextureRect2")
+focus_neighbor_top = NodePath("../TextureRect4")
+focus_neighbor_right = NodePath("../TextureRect2")
+focus_neighbor_bottom = NodePath("../TextureRect3")
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/NinePatchRect/FlowContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TextureRect")
+focus_neighbor_top = NodePath("../TextureRect5")
+focus_neighbor_right = NodePath("../TextureRect")
+focus_neighbor_bottom = NodePath("../TextureRect6")
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/NinePatchRect/FlowContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TextureRect6")
+focus_neighbor_top = NodePath("../TextureRect")
+focus_neighbor_right = NodePath("../TextureRect6")
+focus_neighbor_bottom = NodePath("../TextureRect4")
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect6" type="TextureRect" parent="HBoxContainer/NinePatchRect/FlowContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TextureRect3")
+focus_neighbor_top = NodePath("../TextureRect2")
+focus_neighbor_right = NodePath("../TextureRect3")
+focus_neighbor_bottom = NodePath("../TextureRect5")
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer/NinePatchRect/FlowContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TextureRect5")
+focus_neighbor_top = NodePath("../TextureRect3")
+focus_neighbor_right = NodePath("../TextureRect5")
+focus_neighbor_bottom = NodePath("../TextureRect")
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="HBoxContainer/NinePatchRect/FlowContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../TextureRect4")
+focus_neighbor_top = NodePath("../TextureRect6")
+focus_neighbor_right = NodePath("../TextureRect4")
+focus_neighbor_bottom = NodePath("../TextureRect2")
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -7.0
+offset_bottom = 20.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/NinePatchRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Item"
+label_settings = SubResource("LabelSettings_owhak")
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+color = Color(0.235294, 0.2, 0.321569, 1)
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(124, 106)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_g7wnv")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Input"
+label_settings = SubResource("LabelSettings_owhak")
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+color = Color(0.235294, 0.2, 0.321569, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_ghb6n")
+stretch_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="NinePatch" type="NinePatchRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_sffhc")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/NinePatch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/NinePatch/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("7_74cnp")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/NinePatch/HBoxContainer3"]
+layout_mode = 2
+text = "Items is not valid."
+label_settings = SubResource("LabelSettings_5pc3b")
+
+[node name="Label" type="Label" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Items valid!"
+label_settings = SubResource("LabelSettings_eyxmm")
+
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/NinePatchRect2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Pak Imin"
+label_settings = SubResource("LabelSettings_qwkph")
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(70, 1)
+layout_mode = 2
+color = Color(0.235294, 0.2, 0.321569, 1)
+
+[node name="Label2" type="Label" parent="HBoxContainer/NinePatchRect2/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Pak Imin sedang membutuhh sesuatu, ayo tolong dia.."
+label_settings = SubResource("LabelSettings_wdb05")
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+offset_left = 81.0
+offset_top = 52.0
+offset_right = 109.0
+offset_bottom = 80.0
+texture = ExtResource("9_r7y0s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_wdb05")
+}
+autoplay = "idle"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -18.0
+offset_right = -5.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer5"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer5/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("10_uyb26")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer5/HBoxContainer4"]
+layout_mode = 2
+text = "Drop"
+label_settings = SubResource("LabelSettings_fjrce")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer5"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer5/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("11_exlkp")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer5/HBoxContainer2"]
+layout_mode = 2
+text = "Select"
+label_settings = SubResource("LabelSettings_fjrce")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer5"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer5/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("12_s3bl2")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer5/HBoxContainer3"]
+layout_mode = 2
+text = "Back"
+label_settings = SubResource("LabelSettings_fjrce")
+
+[node name="ignore" type="Control" parent="."]
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="ignore"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ignore/Control"]
+custom_minimum_size = Vector2(70, 116)
+layout_mode = 0
+offset_left = 41.0
+offset_top = 47.0
+offset_right = 111.0
+offset_bottom = 163.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ignore/Control"]
+custom_minimum_size = Vector2(124, 106)
+layout_mode = 0
+offset_left = 115.0
+offset_top = 47.0
+offset_right = 239.0
+offset_bottom = 153.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vsusa")
+}

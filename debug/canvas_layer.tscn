@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://tjs6b2geutii"]
+
+[ext_resource type="Script" uid="uid://bha0xp25j2go7" path="res://debug/canvas_layer.gd" id="1_eb6c6"]
+[ext_resource type="FontFile" uid="uid://b5845d74ljf3p" path="res://inventory_and_int_puzzle/font/pf_tempesta_seven.ttf" id="2_di1so"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3mij"]
+font = ExtResource("2_di1so")
+font_size = 8
+font_color = Color(1, 1, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_eb6c6")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "text"
+label_settings = SubResource("LabelSettings_l3mij")
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
